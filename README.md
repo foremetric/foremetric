@@ -173,7 +173,7 @@ Payment after merge and audit.
 | Pitch Deck | [foremetric.ai/pitch](https://foremetric.ai/pitch-en.pdf) |
 | Telegram | [@foremetric](https://t.me/foremetric) |
 | Email | info@foremetric.ai |
-| GitHub | [github.com/foremetric-ai](https://github.com/foremetric) |
+| GitHub | [github.com/foremetric](https://github.com/foremetric) |
 
 ---
 
