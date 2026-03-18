@@ -169,11 +169,11 @@ Payment after merge and audit.
 | | |
 |---|---|
 | Website | [foremetric.ai](https://foremetric.ai) |
-| Whitepaper | [foremetric.ai/whitepaper](https://foremetric.ai) |
-| Pitch Deck | [foremetric.ai/pitch](https://foremetric.ai) |
+| Whitepaper | [foremetric.ai/whitepaper](https://foremetric.ai/whitepaper_en.pdf) |
+| Pitch Deck | [foremetric.ai/pitch](https://foremetric.ai/pitch-en.pdf) |
 | Telegram | [@foremetric](https://t.me/foremetric) |
 | Email | info@foremetric.ai |
-| GitHub | [github.com/foremetric-ai](https://github.com/foremetric-ai) |
+| GitHub | [github.com/foremetric-ai](https://github.com/foremetric) |
 
 ---
 
