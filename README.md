@@ -143,8 +143,9 @@ Q4 2026   10K+ holders · First B2B revenue
 **We are looking for a Technical Co-founder.**
 ```
 Stack:   Rust · TEE (ARM TrustZone / Intel TDX) · TON · Tolk
-Offer:   Equity · Direct influence over SDE architecture
-Salary:  $0 now — meaningful protocol stake
+Offer:   Equity stake in $FORE token · Real ownership from day one
+         Full influence over SDE architecture
+         Co-founder status · Public credit
 ```
 
 If you believe behavioral data belongs to humans, not corporations:
