@@ -1,41 +1,42 @@
-import "@stdlib/deploy";
+// SPDX-License-Identifier: MIT
+// ForeMetric $FORE Jetton 2.0 — Deploy Script (Tolk 0.13+)
 
-const minTonsForStorage = ton("0.05");
-const gasConsumption = ton("0.05");
+import "@stdlib/deploy"
 
-export async function run(provider: NetworkProvider) {
-    const ui = provider.ui();
+const MIN_TONS_FOR_STORAGE: int = ton("0.05");
+const GAS_CONSUMPTION: int = ton("0.05");
 
-    const jettonParams = {
-        name: "FORE Protocol",
-        description: "Prediction market protocol token",
+@name(run)
+fun deploy(provider: NetworkProvider) {
+    var ui = provider.ui();
+
+    var jettonParams = JettonParams {
+        name: "ForeMetric",
+        description: "ForeMetric — decentralized prediction market protocol on TON",
         symbol: "FORE",
-        image: "https://fore-protocol.com/logo.png",
+        image: "https://foremetric.com/logo.png",
         decimals: 9,
-        totalSupply: 1000000000n * (10n ** 9n), // 1 billion tokens
+        totalSupply: 1000000000 * pow(10, 9),   // 1B FORE
     };
 
-    const jettonMaster = provider.open(await JettonMaster.fromInit(
-        provider.sender().address!,
-        jettonParams
-    ));
+    var jettonMaster = provider.open(
+        JettonMaster.fromInit(provider.sender().address, jettonParams)
+    );
 
-    if (await provider.isContractDeployed(jettonMaster.address)) {
-        ui.write(`Jetton Master already deployed at ${jettonMaster.address}`);
+    if (provider.isContractDeployed(jettonMaster.address)) {
+        ui.write("ForeMetric Jetton Master already deployed at " ++ jettonMaster.address.toString());
         return;
     }
 
-    await jettonMaster.send(
+    jettonMaster.send(
         provider.sender(),
-        {
-            value: minTonsForStorage + gasConsumption,
-        },
+        SendParams { value: MIN_TONS_FOR_STORAGE + GAS_CONSUMPTION },
         "Deploy"
     );
 
-    await provider.waitForDeploy(jettonMaster.address);
+    provider.waitForDeploy(jettonMaster.address);
 
-    ui.write(`Jetton Master deployed at ${jettonMaster.address}`);
-    ui.write(`Total supply: ${jettonParams.totalSupply} ${jettonParams.symbol}`);
-    ui.write(`Owner: ${provider.sender().address}`);
+    ui.write("ForeMetric Jetton Master deployed at " ++ jettonMaster.address.toString());
+    ui.write("Total supply: " ++ jettonParams.totalSupply.toString() ++ " " ++ jettonParams.symbol);
+    ui.write("Owner: " ++ provider.sender().address.toString());
 }
