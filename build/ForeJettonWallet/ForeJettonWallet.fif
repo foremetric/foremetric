@@ -39,9 +39,15 @@ PROGRAM{
     0 PUSHINT
     NEWC
     2 STU
+    1 PUSHINT
+    SWAP
+    1 STU
     s1 s2 XCHG
-    STOPTREF
-    STOPTREF
+    STREF
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
     0 PUSHINT
     SWAP
     1 STU

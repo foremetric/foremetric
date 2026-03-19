@@ -43,9 +43,11 @@ fun calcWalletStateInit(ownerAddress: address, minterAddress: address, walletCod
         .endCell();
     return beginCell()
         .storeUint(0, 2)        // split_depth=none, special=none
-        .storeMaybeRef(walletCode)  // code (present + ref)
-        .storeMaybeRef(data)        // data (present + ref)
-        .storeUint(0, 1)            // no library
+        .storeUint(1, 1)        // code present
+        .storeRef(walletCode)   // code cell ref
+        .storeUint(1, 1)        // data present
+        .storeRef(data)         // data cell ref
+        .storeUint(0, 1)        // no library
         .endCell();
 }
 

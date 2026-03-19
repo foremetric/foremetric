@@ -223,6 +223,41 @@ describe('$FORE Jetton 2.0 — Contract Tests', () => {
         expect(aliceWallet.toString()).not.toBe(bobWallet.toString());
     });
 
+    it('get_wallet_address() — Tolk StateInit matches @ton/core contractAddress (regression: storeMaybeRef bug)', async () => {
+        // This test verifies the fix for the storeMaybeRef bug:
+        // calcWalletStateInit must use storeUint(1,1).storeRef() (correct TL-B StateInit encoding)
+        // NOT storeMaybeRef() which adds an extra presence bit making the hash differ from @ton/core.
+        await minter.sendDeploy(deployer.getSender(), toNano('0.2'));
+
+        const walletCode = getWalletCode();
+        const minterAddr = minter.address;
+
+        // Compute expected address using @ton/core (TypeScript standard)
+        const ownerAddr = alice.address;
+        const dataCell = beginCell()
+            .storeCoins(0n)
+            .storeAddress(ownerAddr)
+            .storeAddress(minterAddr)
+            .storeRef(walletCode)
+            .endCell();
+        // Correct StateInit: 0b00110 = split_depth=0, special=0, code=1, data=1, library=0
+        const stateInitCell = beginCell()
+            .storeUint(0, 2)       // split_depth=none, special=none
+            .storeUint(1, 1)       // code present
+            .storeRef(walletCode)  // code ref
+            .storeUint(1, 1)       // data present
+            .storeRef(dataCell)    // data ref
+            .storeUint(0, 1)       // no library
+            .endCell();
+        const { Address, contractAddress } = await import('@ton/core');
+        const expectedAddr = contractAddress(0, { code: walletCode, data: dataCell });
+
+        // Address from Tolk get_wallet_address
+        const tolkAddr = await minter.getWalletAddress(ownerAddr);
+
+        expect(tolkAddr.toString()).toBe(expectedAddr.toString());
+    });
+
     // ─── Transfer with 0.1% burn ───────────────────────────────────────────────
 
     it('transfer: deploys destination wallet and debits sender', async () => {
