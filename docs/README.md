@@ -1,5 +1,5 @@
 # ForeMetric Docs
 
-- Whitepaper — coming Q2 2026
-- Pitch Deck — coming Q2 2026
+- [Whitepaper](./foremetric-whitepaper.pdf)
+- [Pitch Deck EN](./foremetric-pitch-en.pdf)
 - Technical Specification — coming Q2 2026
