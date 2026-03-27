@@ -138,6 +138,53 @@ Q4 2026   10K+ holders · First B2B revenue
 
 ---
 
+## Smart Contracts
+
+### $FORE Jetton 2.0 (TEP-74 + TEP-89)
+
+Written in **Tolk** (TON's modern FunC-replacement language). Full TEP-74 + TEP-89 compliance.
+
+#### Project Structure
+```
+contracts/
+  fore_jetton_minter.tolk      # Jetton minter/master contract
+  fore_jetton_wallet.tolk      # Jetton wallet contract
+  imports/
+    jetton_utils.tolk           # Shared op codes, helpers, message builders
+wrappers/
+  ForeJettonMinter.ts           # TypeScript wrapper for minter
+  ForeJettonWallet.ts           # TypeScript wrapper for wallet
+tests/
+  fore_jetton.spec.ts           # 32 tests covering deploy, mint, transfer, burn, edge cases
+```
+
+#### Token Specs
+| Parameter | Value |
+|---|---|
+| Symbol | `$FORE` |
+| Standard | Jetton 2.0 (TEP-74 + TEP-89) |
+| Total Supply | 1,000,000,000 (fixed, immutable after mint) |
+| Decimals | 9 |
+| Burn Rate | 0.1% on every P2P transfer (min 1 nanotoken) |
+| Mintable | One-shot only — locked permanently after initial mint |
+
+#### Build & Test
+```bash
+npm install --legacy-peer-deps
+npx blueprint build --all    # compile Tolk → TVM bytecode
+npm test                     # run 32 tests via @ton/sandbox
+```
+
+#### Key Features
+- **Fixed supply**: `mintable` flag permanently set to `false` after first mint — no inflation possible
+- **Deflationary burn**: 0.1% of every transfer is burned (notified to minter, total_supply decreases on-chain)
+- **Minimum burn**: At least 1 nanotoken burned per transfer (prevents zero-burn on tiny amounts)
+- **TEP-74 compliant**: Standard `transfer`, `internal_transfer`, `burn`, `burn_notification` ops
+- **Admin controls**: `change_admin`, `change_content` for metadata updates
+- **Deterministic wallets**: `get_wallet_address(owner)` returns the same address every time
+
+---
+
 ## Contribute
 
 **We are looking for a Technical Co-founder.**

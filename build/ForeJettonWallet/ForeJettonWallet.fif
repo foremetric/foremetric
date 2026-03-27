@@ -1,0 +1,376 @@
+"Asm.fif" include
+// automatically generated from contracts/fore_jetton_wallet.tolk, contracts/imports/jetton_utils.tolk
+PROGRAM{
+  DECLPROC makeAddress
+  DECLPROC calcWalletStateInit
+  DECLPROC calcWalletAddress
+  DECLPROC sendMsg
+  DECLPROC sendMsgWithStateInit
+  DECLPROC packBurnNotification
+  DECLPROC packInternalTransfer
+  DECLPROC loadData
+  DECLPROC saveData
+  DECLPROC calcBurnAmount
+  0 DECLMETHOD onInternalMessage
+  83615 DECLMETHOD getWalletData
+  makeAddress PROC:<{
+    4 PUSHINT
+    NEWC
+    3 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    LDMSGADDR
+    DROP
+  }>
+  calcWalletStateInit PROC:<{
+    NEWC
+    0 PUSHINT
+    STGRAMS
+    s0 s3 XCHG2
+    STSLICER
+    SWAP
+    STSLICER
+    s1 s(-1) PUXC
+    STREF
+    ENDC
+    0 PUSHINT
+    NEWC
+    2 STU
+    1 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    STREF
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
+    0 PUSHINT
+    SWAP
+    1 STU
+    ENDC
+  }>
+  calcWalletAddress PROC:<{
+    calcWalletStateInit CALLDICT
+    0 PUSHINT
+    SWAP
+    HASHCU
+    makeAddress CALLDICT
+  }>
+  sendMsg PROC:<{
+    24 PUSHINT
+    NEWC
+    6 STU
+    s0 s4 XCHG2
+    STSLICER
+    ROT
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  sendMsgWithStateInit PROC:<{
+    24 PUSHINT
+    NEWC
+    6 STU
+    s0 s5 XCHG2
+    STSLICER
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STU
+    7 PUSHINT
+    SWAP
+    3 STU
+    STREF
+    STREF
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  packBurnNotification PROC:<{
+    2078119902 PUSHINT
+    NEWC
+    32 STU
+    s1 s4 XCHG
+    64 STU
+    ROT
+    STGRAMS
+    SWAP
+    STSLICER
+    SWAP
+    STSLICER
+    ENDC
+  }>
+  packInternalTransfer PROC:<{
+    395134233 PUSHINT
+    NEWC
+    32 STU
+    s1 s5 XCHG
+    64 STU
+    s0 s3 XCHG2
+    STGRAMS
+    SWAP
+    STSLICER
+    SWAP
+    STSLICER
+    SWAP
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    1 STU
+    ENDC
+  }>
+  loadData PROC:<{
+    c4 PUSH
+    CTOS
+    LDGRAMS
+    LDMSGADDR
+    LDMSGADDR
+    LDREF
+    DROP
+  }>
+  saveData PROC:<{
+    NEWC
+    s0 s4 XCHG2
+    STGRAMS
+    ROT
+    STSLICER
+    SWAP
+    STSLICER
+    STREF
+    ENDC
+    c4 POP
+  }>
+  calcBurnAmount PROC:<{
+    1000 PUSHINT
+    DIV
+    DUP
+    1 LESSINT
+    IFJMP:<{
+      DROP
+      1 PUSHINT
+    }>
+  }>
+  onInternalMessage PROC:<{
+    2 2 BLKDROP2
+    DUP
+    SEMPTY
+    IFJMP:<{
+      2DROP
+    }>
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    IFJMP:<{
+      DROP
+      32 LDU
+      NIP
+      32 LDU
+      SWAP
+      395134233 PUSHINT
+      EQUAL
+      IF:<{
+        64 LDU
+        NIP
+        LDGRAMS
+        DROP
+        loadData CALLDICT
+        s3 s4 XCHG2
+        ADD
+        s2 s3 XCHG2
+        saveData CALLDICT
+      }>ELSE<{
+        DROP
+      }>
+    }>
+    LDMSGADDR
+    DROP
+    SWAP
+    32 LDU
+    64 LDU
+    loadData CALLDICT
+    s6 PUSH
+    260734629 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s6 POP
+      s6 s1 XCPU
+      SDEQ
+      705 THROWIFNOT
+      s0 s2 XCHG
+      LDGRAMS
+      LDMSGADDR
+      LDMSGADDR
+      1 LDU
+      NIP
+      LDGRAMS
+      DROP
+      s3 PUSH
+      0 GTINT
+      706 THROWIFNOT
+      s4 s3 PUSH2
+      GEQ
+      707 THROWIFNOT
+      s3 PUSH
+      calcBurnAmount CALLDICT
+      s4 s0 PUSH2
+      SUB
+      s6 s5 XCHG2
+      SUB
+      s6 s9 s8 PUSH3
+      saveData CALLDICT
+      s2 s8 s7 XCPUXC
+      calcWalletStateInit CALLDICT
+      0 PUSHINT
+      OVER
+      HASHCU
+      makeAddress CALLDICT
+      s6 s3 s(-1) PUXC2
+      s6 s3 s8 PU2XC
+      packInternalTransfer CALLDICT
+      16 PUSHINT
+      NEWC
+      6 STU
+      s0 s3 XCHG2
+      STSLICER
+      0 PUSHINT
+      STGRAMS
+      0 PUSHINT
+      SWAP
+      105 STU
+      7 PUSHINT
+      SWAP
+      3 STU
+      s1 s6 XCHG
+      STREF
+      STREF
+      ENDC
+      64 PUSHINT
+      SENDRAWMSG
+      s0 s1 s3 XCHG3
+      packBurnNotification CALLDICT
+      0 PUSHINT
+      SWAP
+      2 PUSHINT
+      sendMsg CALLDICT
+    }>
+    s6 PUSH
+    395134233 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s6 POP
+      s0 s3 XCHG
+      LDGRAMS
+      LDMSGADDR
+      LDMSGADDR
+      LDGRAMS
+      DROP
+      s9 s6 PUSH2
+      SDEQ
+      IFNOT:<{
+        s2 s6 s8 PUSH3
+        calcWalletAddress CALLDICT
+        s1 s10 XCHG
+        SDEQ
+        709 THROWIFNOT
+      }>ELSE<{
+        s9 POP
+      }>
+      s4 s2 XCPU
+      ADD
+      s3 s2 s7 PUXC2
+      s1 s6 XCHG
+      saveData CALLDICT
+      s5 PUSH
+      0 GTINT
+      IF:<{
+        1935855772 PUSHINT
+        NEWC
+        32 STU
+        s4 s(-1) PUXC
+        64 STU
+        s0 s3 XCHG2
+        STGRAMS
+        s0 s4 XCHG2
+        STSLICER
+        ENDC
+        s1 s4 s0 XCHG3
+        1 PUSHINT
+        sendMsg CALLDICT
+      }>ELSE<{
+        DROP
+        s2 s4 XCHG
+        3 1 BLKDROP2
+      }>
+      DUP
+      b{00} SDBEGINSQ
+      NIP
+      IFNOT:<{
+        3576854235 PUSHINT
+        NEWC
+        32 STU
+        s1 s2 XCHG
+        64 STU
+        ENDC
+        0 PUSHINT
+        SWAP
+        64 PUSHINT
+        sendMsg CALLDICT
+      }>ELSE<{
+        2DROP
+      }>
+    }>
+    s0 s6 XCHG
+    1499400124 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s6 s1 XCPU
+      SDEQ
+      705 THROWIFNOT
+      s0 s2 XCHG
+      LDGRAMS
+      LDMSGADDR
+      DROP
+      OVER
+      0 GTINT
+      706 THROWIFNOT
+      s2 s1 PUSH2
+      GEQ
+      707 THROWIFNOT
+      s2 s1 XCPU
+      SUB
+      s3 s6 s1 PU2XC
+      s0 s7 XCHG
+      saveData CALLDICT
+      s2 s3 XCHG
+      packBurnNotification CALLDICT
+      0 PUSHINT
+      SWAP
+      64 PUSHINT
+      sendMsg CALLDICT
+    }>
+    16 PUSHPOW2DEC
+    THROWANY
+  }>
+  getWalletData PROC:<{
+    loadData CALLDICT
+  }>
+}END>c
