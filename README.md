@@ -56,10 +56,10 @@ textCore technologies: Rust · Tolk 0.13 · Kyber-768 (post-quantum) · on-devic
 
 ---
 
-## $FORE Token (fixed supply)
+## $HSIG Token (fixed supply)
 
-**Ticker:** $FORE (Jetton 2.0 on TON)  
-**Total Supply:** 1,000,000,000 $FORE (no additional emission)
+**Ticker:** $HSIG (Jetton 2.0 on TON)  
+**Total Supply:** 1,000,000,000 $HSIG (no additional emission)
 
 | Allocation                        | Share  |
 |-----------------------------------|--------|
@@ -77,14 +77,14 @@ textCore technologies: Rust · Tolk 0.13 · Kyber-768 (post-quantum) · on-devic
 
 ## Smart Contracts
 
-- **$FORE Jetton 2.0** — merged (#6)  
+- **$HSIG Jetton 2.0** — merged (#6)  
   Tolk 0.13, 33/33 tests passed, StateInit fixed.
 
 Open bounties:
-- [#2](https://github.com/foremetric/foremetric/issues/2) — Proof-of-Behavior bot detection algorithm — **75,000 $FORE**
-- [#4](https://github.com/foremetric/foremetric/issues/4) — Signal Passport TEE nullifier — **75,000 $FORE**
+- [#2](https://github.com/foremetric/foremetric/issues/2) — Proof-of-Behavior bot detection algorithm — **75,000 $HSIG**
+- [#4](https://github.com/foremetric/foremetric/issues/4) — Signal Passport TEE nullifier — **75,000 $HSIG**
 
-Contributors Pool: 7,500,000 $FORE total.  
+Contributors Pool: 7,500,000 $HSIG total.  
 Vesting: 6-month cliff + 12-month linear unlock.
 
 ---
@@ -92,7 +92,7 @@ Vesting: 6-month cliff + 12-month linear unlock.
 ## Roadmap
 
 - **Q2 2026** — Contract deployment, GitHub open source, 500 verified miners, TON Foundation grant application (current phase)
-- **Q3 2026** — Fair Launch, 5,000 $FORE airdrop to first 5,000 members
+- **Q3 2026** — Fair Launch, 5,000 $HSIG airdrop to first 5,000 members
 - **Q4 2026** — 10,000+ holders, first B2B revenue, buyback activation
 - **2027+** — 1M+ users, full B2B API, global scale
 
@@ -115,11 +115,11 @@ Managed solely by the Architect and trusted technical contributors. No DAO, no c
 - Investors: [foremetric.ai/investors](https://foremetric.ai/investors)
 - Dev Fund: [foremetric.ai/fund](https://foremetric.ai/fund)
 
-**$FORE is a utility token. Nothing in this repository is financial advice.**
+**$HSIG is a utility token. Nothing in this repository is financial advice.**
 
 
 ---
 
-*$FORE is a community utility token. Not a financial instrument.  
+*$HSIG is a community utility token. Not a financial instrument.  
 Nothing in this repository constitutes financial or investment advice.  
 Participation involves risk.*
