@@ -1,6 +1,6 @@
-// fore_jetton_wallet.tolk — $FORE Jetton 2.0 Wallet Contract
+// fore_jetton_wallet.tolk — $HSIG Jetton 2.0 Wallet Contract
 //
-// TEP-74 compliant Jetton wallet for $FORE token.
+// TEP-74 compliant Jetton wallet for $HSIG token.
 // Burns 0.1% (1/1000) of every user-to-user transfer (minimum 1 nanoton).
 // Burns are notified to the minter to reduce total_supply on-chain.
 //
