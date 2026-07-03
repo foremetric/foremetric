@@ -27,13 +27,13 @@ We accept encrypted reports. Our security team PGP key is available upon request
 
 ### Bounty for Security Issues
 
-Serious vulnerabilities may qualify for a security bounty paid in $FORE (amount depends on severity).
+Serious vulnerabilities may qualify for a security bounty paid in $HSIG (amount depends on severity).
 
 | Severity       | Example                          | Bounty range      |
 |----------------|----------------------------------|-------------------|
-| Critical       | Remote code execution, TEE break | 150,000+ $FORE   |
-| High           | Smart contract exploit, nullifier bypass | 75,000–120,000 $FORE |
-| Medium         | Privacy leak, DoS                | 30,000–60,000 $FORE |
+| Critical       | Remote code execution, TEE break | 150,000+ $HSIG   |
+| High           | Smart contract exploit, nullifier bypass | 75,000–120,000 $HSIG |
+| Medium         | Privacy leak, DoS                | 30,000–60,000 $HSIG |
 
 ### Scope
 
