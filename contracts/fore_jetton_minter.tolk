@@ -1,7 +1,7 @@
-// fore_jetton_minter.tolk — $FORE Jetton 2.0 Minter/Master Contract
+// fore_jetton_minter.tolk — $HSIG Jetton 2.0 Minter/Master Contract
 //
-// TEP-74 + TEP-89 compliant Jetton minter for the $FORE token.
-// Fixed supply: 1,000,000,000 $FORE (9 decimals = 1_000_000_000_000_000_000 nanotons).
+// TEP-74 + TEP-89 compliant Jetton minter for the $HSIG token.
+// Fixed supply: 1,000,000,000 $HSIG (9 decimals = 1_000_000_000_000_000_000 nanotons).
 // Mintable ONLY once at deploy; afterwards mintable = false permanently.
 //
 // Storage layout:
