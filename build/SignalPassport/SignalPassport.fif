@@ -1,0 +1,320 @@
+"Asm.fif" include
+// automatically generated from contracts/signal_passport.tolk, contracts/imports/passport_utils.tolk
+PROGRAM{
+  DECLPROC makeAddress
+  DECLPROC sendMsg
+  DECLPROC sendExcesses
+  DECLPROC loadData
+  DECLPROC saveData
+  0 DECLMETHOD onInternalMessage
+  117815 DECLMETHOD getPassportData
+  87501 DECLMETHOD getNullifierHash
+  118715 DECLMETHOD getRemainingQueries
+  94509 DECLMETHOD getStatus
+  104150 DECLMETHOD isValidForQuery
+  makeAddress PROC:<{
+    4 PUSHINT
+    NEWC
+    3 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    LDMSGADDR
+    DROP
+  }>
+  sendMsg PROC:<{
+    24 PUSHINT
+    NEWC
+    6 STU
+    s0 s4 XCHG2
+    STSLICER
+    ROT
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  sendExcesses PROC:<{
+    s2 PUSH
+    b{00} SDBEGINSQ
+    NIP
+    IFJMP:<{
+      3 BLKDROP
+    }>
+    3576854235 PUSHINT
+    NEWC
+    32 STU
+    s1 s2 XCHG
+    64 STU
+    ENDC
+    0 PUSHINT
+    s0 s2 XCHG
+    sendMsg CALLDICT
+  }>
+  loadData PROC:<{
+    c4 PUSH
+    CTOS
+    LDMSGADDR
+    LDMSGADDR
+    256 LDU
+    LDREF
+    16 LDU
+    16 LDU
+    32 LDU
+    64 LDU
+    8 LDU
+    DROP
+  }>
+  saveData PROC:<{
+    NEWC
+    s0 s9 XCHG2
+    STSLICER
+    s0 s7 XCHG2
+    STSLICER
+    s1 s5 XCHG
+    256 STU
+    s1 s3 XCHG
+    STREF
+    16 STU
+    16 STU
+    32 STU
+    64 STU
+    8 STU
+    ENDC
+    c4 POP
+  }>
+  onInternalMessage PROC:<{
+    2 2 BLKDROP2
+    DUP
+    SEMPTY
+    IFJMP:<{
+      2DROP
+    }>
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    IFJMP:<{
+      2DROP
+    }>
+    LDMSGADDR
+    DROP
+    SWAP
+    32 LDU
+    64 LDU
+    s2 PUSH
+    3576854235 PUSHINT
+    EQUAL
+    IFJMP:<{
+      4 BLKDROP
+    }>
+    loadData CALLDICT
+    s11 PUSH
+    1397751809 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s11 POP
+      s11 s6 XCPU
+      SDEQ
+      801 THROWIFNOT
+      s9 PUSH
+      0 EQINT
+      802 THROWIFNOT
+      s10 PUSH
+      0 GTINT
+      IF:<{
+        NOW
+        s11 PUSH
+        LEQ
+        804 THROWIFNOT
+      }>
+      OVER
+      0 GTINT
+      803 THROWIFNOT
+      s0 s7 XCHG
+      32 LDU
+      LDMSGADDR
+      DROP
+      s1 s8 PUSH2
+      AND
+      ROT
+      EQUAL
+      805 THROWIFNOT
+      SWAP
+      DEC
+      DUP
+      0 EQINT
+      IF:<{
+        2 PUSHINT
+        s10 POP
+      }>
+      s6 s8 XCHG
+      s5 s7 XCHG
+      s4 s6 XCHG
+      s3 s5 XCHG
+      s4 s1 s3 XCHG3
+      s0 s10 s9 XCHG3
+      saveData CALLDICT
+      64 PUSHINT
+      sendExcesses CALLDICT
+    }>
+    s11 PUSH
+    1397751810 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      s2 POP
+      s9 POP
+      s9 s5 XCPU
+      SDEQ
+      801 THROWIFNOT
+      s0 s5 XCHG
+      LDMSGADDR
+      DROP
+      s4 s6 XCHG
+      s3 s5 XCHG
+      s4 s3 s0 XCHG3
+      s1 s2 XCHG
+      1 PUSHINT
+      0 PUSHINT
+      s9 s1 s3 XCHG3
+      s10 s10 XCHG2
+      saveData CALLDICT
+      SWAP
+      64 PUSHINT
+      sendExcesses CALLDICT
+    }>
+    s2 POP
+    s0 s10 XCHG
+    1397751811 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s10 s6 XCPU
+      SDEQ
+      801 THROWIFNOT
+      s9 PUSH
+      0 EQINT
+      802 THROWIFNOT
+      s0 s6 XCHG
+      32 LDU
+      LDMSGADDR
+      DROP
+      s6 s8 XCHG
+      s5 s7 XCHG
+      s4 s6 XCHG
+      s3 s5 XCHG
+      s1 s4 s10 XCHG3
+      s1 s9 XCHG
+      saveData CALLDICT
+      64 PUSHINT
+      sendExcesses CALLDICT
+    }>
+    16 PUSHPOW2DEC
+    THROWANY
+  }>
+  getPassportData PROC:<{
+    loadData CALLDICT
+  }>
+  getNullifierHash PROC:<{
+    loadData CALLDICT
+    s6 s8 XCHG
+    8 BLKDROP
+  }>
+  getRemainingQueries PROC:<{
+    loadData CALLDICT
+    s3 s8 XCHG
+    8 BLKDROP
+  }>
+  getStatus PROC:<{
+    loadData CALLDICT
+    s7 s8 XCHG2
+    7 BLKDROP
+    OVER
+    0 EQINT
+    IF:<{
+      DUP
+      0 GTINT
+      0 NEQINT
+    }>ELSE<{
+      0 PUSHINT
+    }>
+    IF:<{
+      NOW
+      SWAP
+      GREATER
+      0 NEQINT
+    }>ELSE<{
+      DROP
+      0 PUSHINT
+    }>
+    IFJMP:<{
+      DROP
+      3 PUSHINT
+    }>
+  }>
+  isValidForQuery PROC:<{
+    loadData CALLDICT
+    4 4 BLKDROP2
+    s4 POP
+    s3 PUSH
+    0 NEQINT
+    IFJMP:<{
+      2DROP
+      0 PUSHINT
+      s3 POP
+      SWAP
+    }>
+    DUP
+    0 GTINT
+    IF:<{
+      NOW
+      SWAP
+      GREATER
+      0 NEQINT
+    }>ELSE<{
+      DROP
+      0 PUSHINT
+    }>
+    IFJMP:<{
+      DROP
+      NIP
+      0 PUSHINT
+      s2 POP
+      3 PUSHINT
+    }>
+    OVER
+    1 LESSINT
+    IFJMP:<{
+      4 BLKDROP
+      0 PUSHINT
+      DUP
+      2 PUSHINT
+    }>
+    s3 s(-1) PUXC
+    AND
+    s0 s3 XCHG2
+    NEQ
+    IFJMP:<{
+      0 PUSHINT
+      -ROT
+    }>
+    DROP
+    1 PUSHINT
+    SWAP
+    0 PUSHINT
+  }>
+}END>c

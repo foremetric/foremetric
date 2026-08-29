@@ -1,15 +1,17 @@
 {
   "name": "fore-jetton",
   "version": "1.0.0",
-  "description": "$FORE Jetton 2.0 — Fixed supply 1B, 0.1% burn on transfer",
+  "description": "$FORE Jetton 2.0 & Signal Passport TEE Nullifier Protocol",
   "scripts": {
-    "build": "npx blueprint build",
+    "build": "node scripts/build_contracts.js",
     "test": "jest --forceExit --detectOpenHandles"
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "testPathPattern": "tests/.*\\.spec\\.ts$",
+    "testMatch": [
+      "**/tests/**/*.spec.ts"
+    ],
     "testTimeout": 30000,
     "transform": {
       "^.+\\.tsx?$": "ts-jest"

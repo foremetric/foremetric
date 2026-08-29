@@ -1,0 +1,251 @@
+"Asm.fif" include
+// automatically generated from contracts/signal_passport_registry.tolk, contracts/imports/passport_utils.tolk
+PROGRAM{
+  DECLPROC makeAddress
+  DECLPROC sendMsg
+  DECLPROC sendExcesses
+  DECLPROC loadData
+  DECLPROC saveData
+  DECLPROC calcPassportStateInit
+  DECLPROC calcPassportAddress
+  0 DECLMETHOD onInternalMessage
+  101124 DECLMETHOD getRegistryData
+  70262 DECLMETHOD getPassportAddress
+  makeAddress PROC:<{
+    4 PUSHINT
+    NEWC
+    3 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    LDMSGADDR
+    DROP
+  }>
+  sendMsg PROC:<{
+    24 PUSHINT
+    NEWC
+    6 STU
+    s0 s4 XCHG2
+    STSLICER
+    ROT
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  sendExcesses PROC:<{
+    s2 PUSH
+    b{00} SDBEGINSQ
+    NIP
+    IFJMP:<{
+      3 BLKDROP
+    }>
+    3576854235 PUSHINT
+    NEWC
+    32 STU
+    s1 s2 XCHG
+    64 STU
+    ENDC
+    0 PUSHINT
+    s0 s2 XCHG
+    sendMsg CALLDICT
+  }>
+  loadData PROC:<{
+    c4 PUSH
+    CTOS
+    LDMSGADDR
+    LDMSGADDR
+    LDREF
+    64 LDU
+    DROP
+  }>
+  saveData PROC:<{
+    NEWC
+    s0 s4 XCHG2
+    STSLICER
+    ROT
+    STSLICER
+    STREF
+    64 STU
+    ENDC
+    c4 POP
+  }>
+  calcPassportStateInit PROC:<{
+    NEWC
+    s0 s8 XCHG2
+    STSLICER
+    s0 s6 XCHG2
+    STSLICER
+    s1 s4 XCHG
+    256 STU
+    s1 s2 XCHG
+    STREF
+    s1 s(-1) PUXC
+    16 STU
+    16 STU
+    32 STU
+    64 STU
+    0 PUSHINT
+    SWAP
+    8 STU
+    ENDC
+    0 PUSHINT
+    NEWC
+    2 STU
+    1 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    STREF
+    1 PUSHINT
+    SWAP
+    1 STU
+    STREF
+    0 PUSHINT
+    SWAP
+    1 STU
+    ENDC
+  }>
+  calcPassportAddress PROC:<{
+    calcPassportStateInit CALLDICT
+    0 PUSHINT
+    SWAP
+    HASHCU
+    makeAddress CALLDICT
+  }>
+  onInternalMessage PROC:<{
+    2 2 BLKDROP2
+    DUP
+    SEMPTY
+    IFJMP:<{
+      2DROP
+    }>
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    IFJMP:<{
+      2DROP
+    }>
+    LDMSGADDR
+    DROP
+    SWAP
+    32 LDU
+    64 LDU
+    loadData CALLDICT
+    s6 PUSH
+    1397751812 PUSHINT
+    EQUAL
+    IFJMP:<{
+      s5 POP
+      s5 POP
+      s5 POP
+      SWAP
+      LDMSGADDR
+      256 LDU
+      LDREF
+      16 LDU
+      32 LDU
+      64 LDU
+      DROP
+      s2 PUSH
+      0 GTINT
+      806 THROWIFNOT
+      s2 PUSH
+      9999 PUSHINT
+      LEQ
+      806 THROWIFNOT
+      s9 PUSH
+      5 -ROLL
+      s9 PUSH
+      calcPassportStateInit CALLDICT
+      0 PUSHINT
+      OVER
+      HASHCU
+      makeAddress CALLDICT
+      NEWC
+      ENDC
+      24 PUSHINT
+      NEWC
+      6 STU
+      ROT
+      STSLICER
+      0 PUSHINT
+      STGRAMS
+      0 PUSHINT
+      SWAP
+      105 STU
+      7 PUSHINT
+      SWAP
+      3 STU
+      s1 s2 XCHG
+      STREF
+      STREF
+      ENDC
+      64 PUSHINT
+      SENDRAWMSG
+      SWAP
+      INC
+      s3 s3 s0 XCHG3
+      saveData CALLDICT
+    }>
+    s6 PUSH
+    16 EQINT
+    IFJMP:<{
+      s2 POP
+      s5 POP
+      s5 s1 PUSH2
+      SDEQ
+      801 THROWIFNOT
+      s0 s2 XCHG
+      LDMSGADDR
+      DROP
+      2SWAP
+      s1 s4 XCHG
+      saveData CALLDICT
+      64 PUSHINT
+      sendExcesses CALLDICT
+    }>
+    s0 s6 XCHG
+    17 EQINT
+    IFJMP:<{
+      s6 s2 PUXC
+      SDEQ
+      801 THROWIFNOT
+      s0 s2 XCHG
+      LDMSGADDR
+      DROP
+      s0 s3 XCHG
+      s0 s4 XCHG
+      saveData CALLDICT
+      64 PUSHINT
+      sendExcesses CALLDICT
+    }>
+    16 PUSHPOW2DEC
+    THROWANY
+  }>
+  getRegistryData PROC:<{
+    loadData CALLDICT
+  }>
+  getPassportAddress PROC:<{
+    loadData CALLDICT
+    DROP
+    s2 POP
+    6 -ROLL
+    calcPassportAddress CALLDICT
+  }>
+}END>c
