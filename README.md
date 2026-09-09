@@ -14,6 +14,10 @@ Your behavioral data is already generating money — just not for you.
 
 Foremetric returns ownership and the income back to the human.
 
+//⚠️ This repository is archived. Active development moved to 
+github.com/foremetric-dev (organization).
+Current repos: foremetric-specs, foremetric-frontend, 
+foremetric-backend, foremetric-core.
 ---
 
 ## The Problem
