@@ -1,4 +1,3 @@
-```markdown
 # ForeMetric — Human Signal Intelligence on TON
 
 **Users opt in and are credited for their behavioral signals from day one.
@@ -103,4 +102,3 @@ rejected (e.g. `OP_MINT`); do not deploy or use them.
 Code in this repository is released under the MIT License (see LICENSE).
 
 *Nothing here is financial advice or an offer of securities or tokens.*
-```
