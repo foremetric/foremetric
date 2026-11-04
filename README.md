@@ -1,126 +1,59 @@
-# F // FOREMETRIC.AI
+# ForeMetric
 
-**Human Signal Intelligence Protocol**
+**Cohort analytics from consented behavioral data.**
 
-[![Status](https://img.shields.io/badge/STATUS-BUILDING-FFB000?style=flat-square&labelColor=0A0E1A)](https://foremetric.ai)
-[![Chain](https://img.shields.io/badge/CHAIN-TON-5BBFAA?style=flat-square&labelColor=0A0E1A)](https://ton.org)
-[![Token](https://img.shields.io/badge/TICKER-%24FORE-FFB000?style=flat-square&labelColor=0A0E1A)](https://foremetric.ai)
-[![License](https://img.shields.io/badge/LICENSE-MIT-5BBFAA?style=flat-square&labelColor=0A0E1A)](LICENSE)
-[![Contract](https://img.shields.io/badge/JETTON_2.0-merged-5BBFAA?style=flat-square&labelColor=0A0E1A)](https://github.com/foremetric/foremetric/pull/6)
+ForeMetric lets consumer-fintech teams buy cohort-level reports on how Telegram users behave, from users who explicitly opt in and share in the revenue. Buyers receive aggregates, never raw data or individual profiles, and there is no export function.
 
----
+Website: [foremetric.ai](https://foremetric.ai) | Contact: info@foremetric.ai
 
-Your behavioral data is already generating money — just not for you.
+> **Status, November 2026:** pre-revenue, no users yet, no outside funding, and nobody has paid for a report. The Telegram Mini App is in development.
 
-Foremetric returns ownership and the income back to the human.
+## What we are building
 
-⚠️ This repository is archived. Active development moved to github.com/foremetric-dev 
----
+Companies that sell to consumers pay for knowledge of how real people behave, and the people who generate that behavior are not part of the deal. ForeMetric is built around consent and a revenue share, and it sells answers, not data.
 
-## The Problem
+The first product is deliberately small: a $1-5K cohort-engagement report for consumer-fintech acquisition teams that buy traffic inside Telegram. A report covers cohort size, activity rhythm, timing, and transitions between categories.
 
-Modern AI models are increasingly trained on synthetic data they themselves generated. This creates a closed loop of degradation known as **Model Collapse**. Verified human behavioral signal is becoming the scarcest and most valuable resource in the AI era.
+## Phases
 
-We believe this is both technically dangerous and fundamentally unfair.
+| | Phase 1 (now) | Phase 2 (designed, not started) | Phase 3 (designed, no date) |
+|---|---|---|---|
+| Purpose | A cheap test: do people consent, do they come back, does a business pay | Native app, on-device processing, hardware-attested computing, differential privacy, a hard minimum of 50 users per group, token launch | Federated learning for AI teams, TON Storage, decentralized attestation |
+| Signals | Two only: Mini App session events and optional DNS category data | More signals, collected on the device | |
+| Trust model | Disclosed trusted operator: we hold the encryption key (AWS KMS, with an audit trail) and can technically read the data | Hardware attestation | Decentralized attestation |
+| Reports | Made by the team from PostgreSQL aggregations | Attested queries | |
 
----
+Phases advance on metrics, not on dates. The Phase 1 gate includes Day-7 retention of at least 20% in a closed alpha of up to 500 invited users, a first paid pilot, and a secured runway. If a gate is not passed, the phase continues.
 
-## Our Solution
+## Status
 
-Foremetric is the **Human Signal Intelligence Protocol** on TON.
+- **Live:** a public prototype at foremetric.ai (simulated data, marked as such), a deployed Rust backend with a PostgreSQL ledger, and an Identity Vault contract on TON Testnet.
+- **In development:** the Telegram Mini App and the DoH/DoT DNS server.
+- **Designed, not built:** native app, confidential computing, revenue splitter, token launch, Signal Passport, Oracle, Missions, federated learning.
 
-- **Proof-of-Behavior** — cryptographic verification that data comes from a real human (no biometrics)
-- **Signal Passport** — user-controlled cryptographic token that grants limited, revocable access to a behavioral profile
-- **TEE (Trusted Execution Environment)** — all processing happens in hardware-isolated enclaves
-- **Sovereign Data Exchange (SDE)** — transparent marketplace where businesses pay users directly for verified behavioral insights
+## Token ($HSIG)
 
-**80%+ of protocol revenue returns to the people who create real value.**
+A specification only: no token contract or splitter is deployed, and no income figure is promised. The design:
 
----
+- Fixed supply of 1,000,000,000 and no mint function.
+- 80% of gross B2B receipts flows back to contributors, 10% goes to a single-level referrer and 10% to the treasury (80/20 when there is no referrer), through an immutable splitter contract on TON.
+- Before launch, balances are IOU entries in a ledger, converted 1:1 at launch. Launch coincides with Phase 2 and has no committed date.
 
-## Architecture (high-level)
-ON-DEVICE TEE          →   TON BLOCKCHAIN          →   COCOON TEE NETWORK
-ARM TrustZone /        Jetton 2.0 +               Intel TDX nodes
-Apple Secure Enclave   Proof-of-Behavior          Zero-knowledge proofs
-textCore technologies: Rust · Tolk 0.13 · Kyber-768 (post-quantum) · on-device inference inside TEE.
+There is no token sale, presale or giveaway.
 
----
+## What this repository is
 
-## Products & Status
+An archive of early experiments: a Jetton prototype in Tolk, with tests and wrappers. It is kept for transparency. It is not the product, it has not been audited, and it does not describe the current design; the specification above supersedes it. Do not deploy or use the contracts in this repository.
 
-| Product              | Description                                      | Status     |
-|----------------------|--------------------------------------------------|------------|
-| **Signal Passport**  | Cryptographic access token to your behavioral profile | Alpha     |
-| **Missions**         | Verified human tasks for AI labs and businesses | Alpha     |
-| **Passive Mining**   | Background behavioral data collection            | Alpha     |
-| **Oracle**           | B2B behavioral analytics API                     | Roadmap   |
+## Principles
 
----
+- Consent first: users choose what to share.
+- Answers, not data: there is no raw-data export endpoint, by construction.
+- No unbacked emission: payouts are backed by real B2B revenue.
+- Disclosed trust model: Phase 1 is a trusted operator, and hardware-attested privacy is Phase 2.
 
-## $HSIG Token (fixed supply)
+## License
 
-**Ticker:** $HSIG (Jetton 2.0 on TON)  
-**Total Supply:** 1,000,000,000 $HSIG (no additional emission)
+Code in this repository is released under the MIT License (see LICENSE).
 
-| Allocation                        | Share  |
-|-----------------------------------|--------|
-| Награды сообщества (Mining & Rewards) | 57.5% |
-| Ликвидность и DEX-пулы            | 15.0% |
-| Команда и разработка              | 7.0%  |
-| **Architect-Controlled Dev Fund** | **8.0%** |
-| Экосистема и гранты               | 10.0% |
-| Начальный аирдроп                 | 2.5%  |
-
-**Fair Launch:** Q3 2026 on DeDust.io + Ston.fi  
-80% of B2B revenue → automatic buyback on DEX.
-
----
-
-## Smart Contracts
-
-- **$HSIG Jetton 2.0** — merged (#6)  
-  Tolk 0.13, 33/33 tests passed, StateInit fixed.
-
-Open bounties:
-- [#2](https://github.com/foremetric/foremetric/issues/2) — Proof-of-Behavior bot detection algorithm — **75,000 $HSIG**
-- [#4](https://github.com/foremetric/foremetric/issues/4) — Signal Passport TEE nullifier — **75,000 $HSIG**
-
-Contributors Pool: 7,500,000 $HSIG total.  
-Vesting: 6-month cliff + 12-month linear unlock.
-
----
-
-## Roadmap
-
-- **Q2 2026** — Contract deployment, GitHub open source, 500 verified miners, TON Foundation grant application (current phase)
-- **Q3 2026** — Fair Launch, 5,000 $HSIG airdrop to first 5,000 members
-- **Q4 2026** — 10,000+ holders, first B2B revenue, buyback activation
-- **2027+** — 1M+ users, full B2B API, global scale
-
----
-
-## Dev Fund (Architect-Controlled)
-
-8% of total supply reserved exclusively for development.  
-Managed solely by the Architect and trusted technical contributors. No DAO, no community votes.
-
-**Donation address:** `UQAnnqbxHVTYv3ANyLw3kIcEBKpZf6WoltHKcXiIE2O-Jl7q`
-
----
-
-## Links
-
-- Website: [foremetric.ai](https://foremetric.ai)
-- Whitepaper: [foremetric.ai/whitepaper](https://foremetric.ai/whitepaper)
-- Pitch Deck: [foremetric.ai/pitch](https://foremetric.ai/pitch)
-- Investors: [foremetric.ai/investors](https://foremetric.ai/investors)
-- Dev Fund: [foremetric.ai/fund](https://foremetric.ai/fund)
-
-**$HSIG is a utility token. Nothing in this repository is financial advice.**
-
-
----
-
-*$HSIG is a community utility token. Not a financial instrument.  
-Nothing in this repository constitutes financial or investment advice.  
-Participation involves risk.*
+*Nothing here is financial advice or an offer of securities or tokens.*
