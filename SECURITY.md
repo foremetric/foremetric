@@ -1,52 +1,126 @@
 # Security Policy
 
-ForeMetric takes security extremely seriously. We handle sensitive behavioral data, cryptographic primitives, and smart contracts on TON.
+## Supported Versions
 
-### Supported Versions
+| Version | Status | Supported |
+|---------|--------|-----------|
+| Pre-launch | Development | ✅ Security reports accepted |
 
-Only the latest main branch and released tags are supported.
+ForeMetric is currently in **pre-launch development**. The public repository contains documentation only; no production smart contracts or protocol code is deployed yet.
 
-### Reporting a Vulnerability
+---
 
-**Please do not report security issues publicly.**
+## Reporting a Vulnerability
 
-We use a coordinated disclosure process:
+We take security seriously and appreciate responsible disclosure of security issues.
 
-1. Send a detailed report to **security@foremetric.ai**
-2. Include:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
-   - Any PoC (if safe)
+### How to Report
 
-3. We aim to acknowledge receipt within **48 hours** and provide a fix timeline within **5 business days**.
+**Email:** info@foremetric.ai  
+**Subject line:** `Security Report - [Brief description]`
 
-### PGP Key (optional but recommended)
+### What to Include
 
-We accept encrypted reports. Our security team PGP key is available upon request.
+Please provide as much information as possible:
 
-### Bounty for Security Issues
+- Type of vulnerability (smart contract, web application, cryptographic, etc.)
+- Steps to reproduce the issue
+- Expected vs. actual behavior
+- Proof of concept (if applicable)
+- Impact assessment
+- Suggested fix (optional but helpful)
 
-Serious vulnerabilities may qualify for a security bounty paid in $HSIG (amount depends on severity).
+### Response Time
 
-| Severity       | Example                          | Bounty range      |
-|----------------|----------------------------------|-------------------|
-| Critical       | Remote code execution, TEE break | 150,000+ $HSIG   |
-| High           | Smart contract exploit, nullifier bypass | 75,000–120,000 $HSIG |
-| Medium         | Privacy leak, DoS                | 30,000–60,000 $HSIG |
+We aim to acknowledge receipt of security reports within **48–72 hours**.
 
-### Scope
+After the initial reply, we will send regular updates about the status of your report, including:
+- Confirmation of the issue
+- Timeline for a fix
+- When the fix is deployed
 
-- Smart contracts (Jetton 2.0, Signal Passport nullifier, etc.)
-- TEE implementation and nullifier mechanism
-- Proof-of-Behavior algorithm
-- On-device and server-side code handling behavioral data
+---
 
-Out of scope: social engineering, spam, rate limiting, etc.
+## Responsible Disclosure Policy
 
-### Thank You
+We request that you:
 
-Security researchers and responsible disclosure help keep ForeMetric safe for millions of users. We deeply appreciate your efforts.
+✅ **DO:**
+- Give us reasonable time to investigate and fix the issue before public disclosure
+- Communicate clearly and respectfully
+- Make a good faith effort to avoid privacy violations, data destruction, and service interruption
 
-ForeMetric Security Team  
-March 2026
+❌ **DO NOT:**
+- Exploit the vulnerability beyond what is necessary to demonstrate it
+- Access data or systems you are not authorized to access
+- Publicly disclose the vulnerability before we have had a chance to address it
+- Demand compensation or threaten disclosure
+
+---
+
+## No Bounty Program
+
+**ForeMetric does not currently offer bug bounties, token rewards, or financial compensation for security reports.**
+
+We are a pre-launch project operating on a tight runway. While we deeply appreciate security researchers who help us identify vulnerabilities, we cannot offer monetary rewards at this stage.
+
+What we **can** offer:
+- Prompt, serious attention to your report
+- Public acknowledgment (if you wish) after the issue is resolved
+- Early access to the protocol when it launches
+- A reference letter for your security research portfolio
+
+**Warning:** If someone offers you "$HSIG tokens" or "ForeMetric tokens" in exchange for security work, it is **not** from us. No token exists or is deployed at this time.
+
+---
+
+## Scope
+
+### In Scope
+
+- Smart contract vulnerabilities (when deployed)
+- Web application security issues at foremetric.ai
+- Cryptographic implementation flaws
+- Protocol design vulnerabilities
+- Documentation errors that could lead to security issues
+
+### Out of Scope
+
+- Social engineering attacks
+- Physical security attacks
+- DDoS attacks
+- Vulnerabilities in third-party dependencies (unless they directly impact ForeMetric)
+- Theoretical vulnerabilities without proof of concept
+
+---
+
+## Our Commitment to You
+
+When you report a security issue to us, we commit to:
+
+1. **Responding promptly** — within 48–72 hours
+2. **Taking your report seriously** — we will investigate every credible report
+3. **Working with you** — we will keep you informed of our progress
+4. **Not taking legal action** — as long as you follow responsible disclosure
+5. **Giving credit** — if you want public acknowledgment, we will provide it
+
+---
+
+## Security Best Practices for Contributors
+
+If you are contributing to ForeMetric development:
+
+1. **Use 2FA** on all accounts (GitHub, email, etc.)
+2. **Never commit secrets** — API keys, private keys, passwords, etc.
+3. **Review code carefully** — especially cryptographic and smart contract code
+4. **Test thoroughly** — especially edge cases and failure modes
+5. **Document assumptions** — especially security-critical ones
+
+---
+
+## Contact
+
+**Email:** info@foremetric.ai  
+**PGP Key:** [Will be added when available]
+
+Thank you for helping make ForeMetric secure for everyone who will use it.
