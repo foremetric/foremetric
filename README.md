@@ -93,6 +93,10 @@ rejected (e.g. `OP_MINT`); do not deploy or use them.
 - Disclosed trust model: Phase 1 is a named trusted operator; hardware
   attestation is Phase 2.
 
+  ## ForeMetric: Closed Alpha Waitlist
+
+  https://luma.com/bxt0dn3t
+
 ## Contact
 
 [foremetric.ai](https://foremetric.ai) · info@foremetric.ai · [X / Twitter](https://x.com/foremetric)
