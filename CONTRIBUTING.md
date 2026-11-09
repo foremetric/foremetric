@@ -19,8 +19,6 @@ Unsolicited pull requests are closed without review, and so are automated or AI-
 There is no bounty program. The bounty listings that used to be in this repository were discontinued and closed. We do not currently offer tokens or token allocations for contributions, and no token is deployed. If someone offers you ForeMetric tokens for work, it is not from us.
 ```
 
-Если хочешь сохранить благодарность — последней строкой после него:
-
 ```markdown
 
 Thank you for helping build the infrastructure that returns control of behavioral data back to the people who generate it.
