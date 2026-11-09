@@ -1,4 +1,4 @@
-````markdown
+
 # Contributing to ForeMetric
 
 **ForeMetric is built by a small founding team. Development happens in private repositories, and this public repository does not take code contributions.**
@@ -24,9 +24,10 @@ Unsolicited pull requests are closed without review, and so are automated or AI-
 
 There is no bounty program. The bounty listings that used to be in this repository were **discontinued and closed**.
 
-We do not offer tokens, rewards, vesting or any token allocation for contributions, and **no token is deployed**. If someone offers you $HSIG or any "ForeMetric tokens" in exchange for work, it is not from us.
+We do not offer tokens, rewards, vesting or any token allocation for contributions, and **no token is deployed**. 
+If someone offers you $HSIG or any "ForeMetric tokens" in exchange for work, it is not from us.
 
----
+
 
 Thank you for helping build the infrastructure that returns control of behavioral data back to the people who generate it.
-````
+
